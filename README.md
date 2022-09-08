@@ -13,3 +13,10 @@ eg. downloading first 15 logs
  ```bash
 sfdx force:apex:log:list | head -n 15 | sed '1,2d' | sed 's/^[[:alpha:]]*[[:space:]]*[[:digit:]]*[[:space:]]*//g' | sed 's/[[:space:]].*//g' | while read line; do sfdx force:apex:log:get --logid $line > path_to_log_folder/$line ; done
 ```
+
+you can also filter these by specific users by adding the following filter `grep -i 'user name'` 
+
+eg. download all logs from user John Doe 
+ ```bash
+sfdx force:apex:log:list | grep -i 'John Doe' | sed '1,2d' | sed 's/^[[:alpha:]]*[[:space:]]*[[:digit:]]*[[:space:]]*//g' | sed 's/[[:space:]].*//g' | while read line; do sfdx force:apex:log:get --logid $line > path_to_log_folder/$line ; done
+```
